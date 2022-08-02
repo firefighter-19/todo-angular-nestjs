@@ -4,7 +4,6 @@ import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm/dist/typeorm.module';
 import { CategoryModule } from './category/category.module';
-import { TodoModule } from './category/todo/todo.module';
 
 @Module({
   imports: [
@@ -34,7 +33,6 @@ import { TodoModule } from './category/todo/todo.module';
       autoLoadEntities: true,
     }),
     CategoryModule,
-    TodoModule,
   ],
 })
 export class AppModule {}

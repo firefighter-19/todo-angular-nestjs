@@ -1,0 +1,30 @@
+type Query {
+  getTodoList: [Category]!
+}
+
+type Mutation {
+  createTodo(todoData: TodoDto!): Category!
+}
+
+input TodoDto {
+  title: String!
+  text: String!
+}
+
+type Category {
+  id: ID!
+  title: String!
+  todo: [Todo]!
+}
+
+type Todo {
+  id: ID!
+  text: String!
+  isCompleted: Boolean!
+}
+
+type Todo {
+  id: ID!
+  text: String!
+  isCompleted: Boolean!
+}
