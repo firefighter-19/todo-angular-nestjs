@@ -10,6 +10,7 @@ import { CategoryModule } from './category/category.module';
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       debug: true,
+      introspection: true,
       playground: true,
       typePaths: ['./**/*.graphql'],
       context: ({ req, res }) => ({ req, res }),
@@ -31,6 +32,7 @@ import { CategoryModule } from './category/category.module';
       database: process.env.DB_NAME,
       synchronize: true,
       autoLoadEntities: true,
+      entities: ['dist/src/**/*.entity.js'],
     }),
     CategoryModule,
   ],

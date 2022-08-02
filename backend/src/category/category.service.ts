@@ -22,12 +22,12 @@ export class CategoryService {
 
   public async createTodo(todoData: CategoryTodoDto): Promise<CategoryEntity> {
     const { title, text } = todoData;
-    const savedTitle = await this.categoryRepository.save({ title });
-    const savedTodo = await this.todoRepository.save({
+    const category = await this.categoryRepository.save({ title });
+    const todo = await this.todoRepository.save({
       text,
-      category: savedTitle,
+      category,
     });
-    savedTitle.todo = [savedTodo];
-    return savedTitle;
+    category.todo = [todo];
+    return category;
   }
 }
