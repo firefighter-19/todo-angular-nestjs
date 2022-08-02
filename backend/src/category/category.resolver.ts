@@ -7,7 +7,9 @@ import { CategoryTodoDto } from './dto/category.dto';
 export class CategoryResolver {
   constructor(private readonly categoryService: CategoryService) {}
 
-  @Query(() => CategoryEntity)
+  @Query(() => CategoryEntity, {
+    name: 'projects',
+  })
   async getTodoList(): Promise<CategoryEntity[]> {
     return await this.categoryService.getTodoList();
   }

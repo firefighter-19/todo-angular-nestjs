@@ -14,7 +14,7 @@ export class TodoDto {
 }
 
 export abstract class IQuery {
-    abstract getTodoList(): Nullable<Category>[] | Promise<Nullable<Category>[]>;
+    abstract projects(): Nullable<Category>[] | Promise<Nullable<Category>[]>;
 }
 
 export abstract class IMutation {

@@ -1,5 +1,5 @@
 type Query {
-  getTodoList: [Category]!
+  projects: [Category]!
 }
 
 type Mutation {
