@@ -3,10 +3,10 @@ type Query {
 }
 
 type Mutation {
-  createTodo(todoData: TodoDto!): Category!
+  createTodo(todoData: CreateUserInput!): Category!
 }
 
-input TodoDto {
+input CreateUserInput {
   title: String!
   text: String!
 }

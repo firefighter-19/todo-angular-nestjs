@@ -8,7 +8,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export class TodoDto {
+export class CreateUserInput {
     title: string;
     text: string;
 }
@@ -18,7 +18,7 @@ export abstract class IQuery {
 }
 
 export abstract class IMutation {
-    abstract createTodo(todoData: TodoDto): Category | Promise<Category>;
+    abstract createTodo(todoData: CreateUserInput): Category | Promise<Category>;
 }
 
 export class Category {
