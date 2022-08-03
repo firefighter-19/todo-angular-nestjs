@@ -4,29 +4,27 @@ services:
   db:
     container_name: todo-db
     image: postgres:14.4-alpine
-    restart: always
-    env_file:
-      - .env
     environment:
-      - POSTGRES_USER=${DB_USER}
-      - POSTGRES_PASSWORD=${DB_PASSWORD}
-      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=todo-db
     volumes:
-      - ./pgdata:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/data
     ports:
-      - "5431:5432"
+      - 5050:5432
   backend:
     container_name: todo-nestjs
     build:
       context: ./backend
+      dockerfile: Dockerfile
     depends_on:
       - db
-    restart: unless-stopped
+    restart: always
     ports:
-      - "3000:3000"
+      - 3000:3000
     environment:
-      - TYPEORM_PASSWORD=${DB_PASSWORD}
-      - TYPEORM_HOST=db
+      - TYPEORM_PASSWORD=postgres
+      - TYPEORM_HOST="todo-db"
   # frontend:
   #   container_name: todo-angular
   #   build:
@@ -37,3 +35,7 @@ services:
   #   restart: unless-stopped
   #   ports:
   #     - '80:80'
+
+volumes:
+  pgdata:
+    driver: local
