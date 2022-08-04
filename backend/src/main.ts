@@ -9,7 +9,7 @@ async function bootstrap() {
   app.enableCors({
     credentials: true,
   });
-  await app.listen(PORT || 3000, () =>
+  await app.listen(PORT || 3050, () =>
     console.log(`App was started on ${PORT} port`),
   );
 }

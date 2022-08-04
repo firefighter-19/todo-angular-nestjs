@@ -8,7 +8,6 @@ declare global {
       DB_PASSWORD: string;
       DB_NAME: string;
       APP_PORT: string;
-      NODE_ENV: 'development' | 'production';
     }
   }
 }

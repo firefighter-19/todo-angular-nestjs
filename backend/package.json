@@ -11,6 +11,7 @@
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "gen:types": "ts-node ./generate-types.ts",
+    "start:docker-dev": "cross-env NODE_ENV=docker-dev nest start --watch",
     "start:dev": "cross-env NODE_ENV=development nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node cross-env NODE_ENV=production dist/main",
