@@ -13,7 +13,6 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
       database: process.env.DB_NAME,
       synchronize: true,
       autoLoadEntities: true,
-      entities: ['dist/src/**/*.entity.js'],
     };
   }
 }

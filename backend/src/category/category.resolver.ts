@@ -1,7 +1,12 @@
 import { CategoryEntity } from './entities/category.entity';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { CategoryService } from './category.service';
-import { CategoryTodoDto } from './dto/category.dto';
+import {
+  CreateCategoryDto,
+  UpdateCategoryDto,
+  DeleteCategoryDto,
+  DeleteTodoDto,
+} from './dto/category.dto';
 
 @Resolver('Category')
 export class CategoryResolver {
@@ -15,9 +20,29 @@ export class CategoryResolver {
   }
 
   @Mutation(() => CategoryEntity)
-  async createTodo(
-    @Args('todoData') todoData: CategoryTodoDto,
+  async createCategory(
+    @Args('todoData') todoData: CreateCategoryDto,
   ): Promise<CategoryEntity> {
-    return await this.categoryService.createTodo(todoData);
+    return await this.categoryService.createCategory(todoData);
+  }
+  @Mutation(() => CategoryEntity)
+  async updateCategory(
+    @Args('todoData') todoData: UpdateCategoryDto,
+  ): Promise<CategoryEntity[]> {
+    return await this.categoryService.updateCategory(todoData);
+  }
+
+  @Mutation(() => CategoryEntity)
+  async deleteCategory(
+    @Args('todoData') todoData: DeleteCategoryDto,
+  ): Promise<string[]> {
+    return await this.categoryService.deleteCategory(todoData);
+  }
+
+  @Mutation(() => CategoryEntity)
+  async deleteTodo(
+    @Args('todoData') todoData: DeleteTodoDto,
+  ): Promise<string[]> {
+    return await this.categoryService.deleteTodo(todoData);
   }
 }

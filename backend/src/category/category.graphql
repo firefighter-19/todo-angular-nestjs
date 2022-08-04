@@ -3,28 +3,49 @@ type Query {
 }
 
 type Mutation {
-  createTodo(todoData: CreateUserInput!): Category!
+  createCategory(todoData: CreateCategoryInput!): Category!
+  updateCategory(todoData: UpdateCategoryInput!): [Category]!
+  deleteCategory(todoData: DeleteCategoryInput!): [ID]!
+  deleteTodo(todoData: DeleteTodoInput!): [ID]!
 }
 
-input CreateUserInput {
+input CreateCategoryInput {
   title: String!
+  text: [String]
+}
+
+input UpdateCategoryInput {
+  categories: [CategoryInput!]!
+}
+
+input CategoryInput {
+  id: ID!
+  title: String!
+  todo: [TodoInput]
+}
+
+input TodoInput {
+  id: ID!
   text: String!
+  isCompleted: Boolean!
+}
+
+input DeleteCategoryInput {
+  id: [ID!]!
+}
+
+input DeleteTodoInput {
+  todoId: [ID!]!
 }
 
 type Category {
-  id: ID!
-  title: String!
-  todo: [Todo]!
+  id: ID
+  title: String
+  todo: [Todo]
 }
 
 type Todo {
-  id: ID!
-  text: String!
-  isCompleted: Boolean!
-}
-
-type Todo {
-  id: ID!
-  text: String!
-  isCompleted: Boolean!
+  id: ID
+  text: String
+  isCompleted: Boolean
 }

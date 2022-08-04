@@ -13,8 +13,6 @@ export class CategoryEntity {
   @Column()
   public title!: string;
 
-  @OneToMany(() => TodoEntity, (todo) => todo.category, {
-    onDelete: 'CASCADE',
-  })
+  @OneToMany(() => TodoEntity, (todo) => todo.category, { cascade: true })
   public todo!: TodoEntity[];
 }

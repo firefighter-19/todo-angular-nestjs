@@ -17,6 +17,9 @@ export class TodoEntity {
   @Column({ default: false })
   public isCompleted!: boolean;
 
-  @ManyToOne(() => CategoryEntity, (category) => category.todo)
+  @ManyToOne(() => CategoryEntity, (category) => category.todo, {
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+  })
   public category!: CategoryEntity;
 }
