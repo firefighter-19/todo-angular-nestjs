@@ -12,7 +12,7 @@ import {
 export class CategoryResolver {
   constructor(private readonly categoryService: CategoryService) {}
 
-  @Query(() => CategoryEntity, {
+  @Query(() => [CategoryEntity], {
     name: 'projects',
   })
   async getTodoList(): Promise<CategoryEntity[]> {
@@ -25,21 +25,21 @@ export class CategoryResolver {
   ): Promise<CategoryEntity> {
     return await this.categoryService.createCategory(todoData);
   }
-  @Mutation(() => CategoryEntity)
+  @Mutation(() => [CategoryEntity])
   async updateCategory(
     @Args('todoData') todoData: UpdateCategoryDto,
   ): Promise<CategoryEntity[]> {
     return await this.categoryService.updateCategory(todoData);
   }
 
-  @Mutation(() => CategoryEntity)
+  @Mutation(() => [String])
   async deleteCategory(
     @Args('todoData') todoData: DeleteCategoryDto,
   ): Promise<string[]> {
     return await this.categoryService.deleteCategory(todoData);
   }
 
-  @Mutation(() => CategoryEntity)
+  @Mutation(() => [String])
   async deleteTodo(
     @Args('todoData') todoData: DeleteTodoDto,
   ): Promise<string[]> {
