@@ -1,4 +1,4 @@
-import { CategoryEntity } from './entities/category.entity';
+import { CategoryEntity } from './entity/category.entity';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -6,9 +6,8 @@ import {
   CreateCategoryDto,
   UpdateCategoryDto,
   DeleteCategoryDto,
-  DeleteTodoDto,
 } from './dto/category.dto';
-import { TodoEntity } from './entities/todo.entity';
+import { TodoEntity } from '../todo/entity/todo.entity';
 
 @Injectable()
 export class CategoryService {
@@ -73,11 +72,5 @@ export class CategoryService {
     const { id } = data;
     await this.categoryRepository.delete(id);
     return id;
-  }
-
-  public async deleteTodo(data: DeleteTodoDto): Promise<string[]> {
-    const { todoId } = data;
-    await this.todoRepository.delete(todoId);
-    return todoId;
   }
 }

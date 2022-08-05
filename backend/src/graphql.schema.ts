@@ -19,22 +19,27 @@ export class UpdateCategoryInput {
 
 export class CategoryInput {
     id: string;
-    title: string;
+    title?: Nullable<string>;
     todo?: Nullable<Nullable<TodoInput>[]>;
-}
-
-export class TodoInput {
-    id: string;
-    text: string;
-    isCompleted: boolean;
 }
 
 export class DeleteCategoryInput {
     id: string[];
 }
 
+export class AddTodoInput {
+    categoryId: string;
+    text: string;
+}
+
 export class DeleteTodoInput {
     todoId: string[];
+}
+
+export class TodoInput {
+    id: string;
+    text: string;
+    isCompleted: boolean;
 }
 
 export abstract class IQuery {
@@ -47,6 +52,8 @@ export abstract class IMutation {
     abstract updateCategory(todoData: UpdateCategoryInput): Nullable<Category>[] | Promise<Nullable<Category>[]>;
 
     abstract deleteCategory(todoData: DeleteCategoryInput): Nullable<string>[] | Promise<Nullable<string>[]>;
+
+    abstract addTodo(todoData: AddTodoInput): Category | Promise<Category>;
 
     abstract deleteTodo(todoData: DeleteTodoInput): Nullable<string>[] | Promise<Nullable<string>[]>;
 }

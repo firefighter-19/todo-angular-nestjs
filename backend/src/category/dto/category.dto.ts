@@ -1,3 +1,5 @@
+import { Todo } from '../../todo/dto/todo.dto';
+
 export interface CreateCategoryDto {
   title: string;
   text: string[];
@@ -15,14 +17,4 @@ export interface CategoryDto {
 
 export interface DeleteCategoryDto {
   id: string[];
-}
-
-export interface DeleteTodoDto {
-  todoId: string[];
-}
-
-interface Todo {
-  id: string;
-  text: string;
-  isCompleted: boolean;
 }

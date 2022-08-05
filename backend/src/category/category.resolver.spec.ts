@@ -5,7 +5,6 @@ import {
   CategoryDto,
   CreateCategoryDto,
   DeleteCategoryDto,
-  DeleteTodoDto,
   UpdateCategoryDto,
 } from './dto/category.dto';
 
@@ -55,7 +54,6 @@ describe('CategoryResolver', () => {
               })),
             ),
             deleteCategory: jest.fn(({ id }: DeleteCategoryDto) => id),
-            deleteTodo: jest.fn(({ todoId }: DeleteTodoDto) => todoId),
           }),
         },
       ],
@@ -141,12 +139,6 @@ describe('CategoryResolver', () => {
 
   describe('Delete category', () => {
     it('should delete the categories array by id', async () => {
-      expect(await resolver.deleteCategory({ id: ['123'] })).toEqual(['123']);
-    });
-  });
-
-  describe('Delete todo or todo list', () => {
-    it('should delete the todo array by id', async () => {
       expect(await resolver.deleteCategory({ id: ['123'] })).toEqual(['123']);
     });
   });

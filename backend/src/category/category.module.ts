@@ -1,5 +1,5 @@
-import { TodoEntity } from './entities/todo.entity';
-import { CategoryEntity } from './entities/category.entity';
+import { TodoEntity } from '../todo/entity/todo.entity';
+import { CategoryEntity } from './entity/category.entity';
 import { TypeOrmModule } from '@nestjs/typeorm/dist/typeorm.module';
 import { Module } from '@nestjs/common';
 import { CategoryResolver } from './category.resolver';

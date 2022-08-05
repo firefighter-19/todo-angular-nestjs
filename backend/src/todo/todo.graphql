@@ -1,0 +1,25 @@
+type Mutation {
+  addTodo(todoData: AddTodoInput!): Category!
+  deleteTodo(todoData: DeleteTodoInput!): [ID]!
+}
+
+type Todo {
+  id: ID
+  text: String
+  isCompleted: Boolean
+}
+
+input AddTodoInput {
+  categoryId: ID!
+  text: String!
+}
+
+input DeleteTodoInput {
+  todoId: [ID!]!
+}
+
+input TodoInput {
+  id: ID!
+  text: String!
+  isCompleted: Boolean!
+}

@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm/dist/typeorm.module';
 import { CategoryModule } from './category/category.module';
 import { TypeOrmConfigService } from '../configs/orm.config';
 import { graphqlConfig } from '../configs/graphql.config';
+import { TodoModule } from './todo/todo.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { graphqlConfig } from '../configs/graphql.config';
       useClass: TypeOrmConfigService,
     }),
     CategoryModule,
+    TodoModule,
   ],
 })
 export class AppModule {}

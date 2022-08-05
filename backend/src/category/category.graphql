@@ -6,7 +6,6 @@ type Mutation {
   createCategory(todoData: CreateCategoryInput!): Category!
   updateCategory(todoData: UpdateCategoryInput!): [Category]!
   deleteCategory(todoData: DeleteCategoryInput!): [ID]!
-  deleteTodo(todoData: DeleteTodoInput!): [ID]!
 }
 
 input CreateCategoryInput {
@@ -20,32 +19,16 @@ input UpdateCategoryInput {
 
 input CategoryInput {
   id: ID!
-  title: String!
+  title: String
   todo: [TodoInput]
-}
-
-input TodoInput {
-  id: ID!
-  text: String!
-  isCompleted: Boolean!
 }
 
 input DeleteCategoryInput {
   id: [ID!]!
 }
 
-input DeleteTodoInput {
-  todoId: [ID!]!
-}
-
 type Category {
   id: ID
   title: String
   todo: [Todo]
-}
-
-type Todo {
-  id: ID
-  text: String
-  isCompleted: Boolean
 }
