@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TopBarModule } from './components/top-bar/top-bar.module';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
+import { TodoListModule } from './pages/todo-list/todo-list.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
     TopBarModule,
     GraphQLModule,
     HttpClientModule,
+    TodoListModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

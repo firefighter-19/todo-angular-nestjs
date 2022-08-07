@@ -1,1 +1,3 @@
-<p>todo-list works!</p>
+<div *ngIf="projects$ | async as projects" class="container">
+  <app-todo [categories]="projects.projects"></app-todo>
+</div>

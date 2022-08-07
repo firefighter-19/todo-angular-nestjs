@@ -1,0 +1,22 @@
+<ul class="todo__list">
+  <li
+    *ngFor="let category of categories"
+    class="todo__list-item"
+  >
+    <p class="todo__list-title">
+      {{ category.title }}
+    </p>
+    <ul>
+      <li *ngFor="let t of category.todo" class="todo__item">
+        <label>
+          <mat-checkbox
+            [ngClass]="t.isCompleted ? 'todo__checkbox-active' : 'todo__checkbox'"
+
+            [checked]="t.isCompleted" color="primary">
+            {{ t.text }}
+          </mat-checkbox>
+        </label>
+      </li>
+    </ul>
+  </li>
+</ul>

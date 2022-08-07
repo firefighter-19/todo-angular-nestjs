@@ -23,12 +23,14 @@ import { UPDATE_CATEGORY } from './gql/updateCategory';
 export class TodoListService {
   constructor(private readonly apollo: Apollo) {}
 
-  public getTodoList() {
+  public getTodoList(): Observable<IProjects> {
     return this.apollo
       .watchQuery<IProjects>({
         query: GET_TODO_LIST,
       })
-      .valueChanges.pipe(map(({ data }) => data?.projects));
+      .valueChanges.pipe(
+        map(({ data, loading }) => ({ projects: data.projects, loading }))
+      );
   }
 
   public createCategory(
