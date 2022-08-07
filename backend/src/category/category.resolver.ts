@@ -27,14 +27,14 @@ export class CategoryResolver {
   @Mutation(() => [CategoryEntity])
   async updateCategory(
     @Args('todoData') todoData: UpdateCategoryDto,
-  ): Promise<CategoryEntity[]> {
+  ): Promise<CategoryEntity> {
     return await this.categoryService.updateCategory(todoData);
   }
 
-  @Mutation(() => [String])
+  @Mutation(() => CategoryEntity)
   async deleteCategory(
     @Args('todoData') todoData: DeleteCategoryDto,
-  ): Promise<string[]> {
+  ): Promise<CategoryEntity> {
     return await this.categoryService.deleteCategory(todoData);
   }
 }

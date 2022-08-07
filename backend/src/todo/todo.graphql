@@ -1,6 +1,7 @@
 type Mutation {
   addTodo(todoData: AddTodoInput!): Category!
-  deleteTodo(todoData: DeleteTodoInput!): [ID]!
+  updateTodo(todoData: UpdateTodoInput!): Category!
+  deleteTodo(todoData: DeleteTodoInput!): Category!
 }
 
 type Todo {
@@ -14,8 +15,14 @@ input AddTodoInput {
   text: String!
 }
 
+input UpdateTodoInput {
+  categoryId: ID!
+  todo: TodoInput!
+}
+
 input DeleteTodoInput {
-  todoId: [ID!]!
+  categoryId: ID!
+  todoId: ID!
 }
 
 input TodoInput {

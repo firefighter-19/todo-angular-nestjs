@@ -6,7 +6,8 @@ export interface CreateCategoryDto {
 }
 
 export interface UpdateCategoryDto {
-  categories: CategoryDto[];
+  categoryId: string;
+  title: string;
 }
 
 export interface CategoryDto {
@@ -16,5 +17,5 @@ export interface CategoryDto {
 }
 
 export interface DeleteCategoryDto {
-  id: string[];
+  id: string;
 }

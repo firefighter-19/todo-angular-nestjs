@@ -14,7 +14,8 @@ export class CreateCategoryInput {
 }
 
 export class UpdateCategoryInput {
-    categories: CategoryInput[];
+    categoryId: string;
+    title: string;
 }
 
 export class CategoryInput {
@@ -24,7 +25,7 @@ export class CategoryInput {
 }
 
 export class DeleteCategoryInput {
-    id: string[];
+    id: string;
 }
 
 export class AddTodoInput {
@@ -32,8 +33,14 @@ export class AddTodoInput {
     text: string;
 }
 
+export class UpdateTodoInput {
+    categoryId: string;
+    todo: TodoInput;
+}
+
 export class DeleteTodoInput {
-    todoId: string[];
+    categoryId: string;
+    todoId: string;
 }
 
 export class TodoInput {
@@ -49,13 +56,15 @@ export abstract class IQuery {
 export abstract class IMutation {
     abstract createCategory(todoData: CreateCategoryInput): Category | Promise<Category>;
 
-    abstract updateCategory(todoData: UpdateCategoryInput): Nullable<Category>[] | Promise<Nullable<Category>[]>;
+    abstract updateCategory(todoData: UpdateCategoryInput): Category | Promise<Category>;
 
-    abstract deleteCategory(todoData: DeleteCategoryInput): Nullable<string>[] | Promise<Nullable<string>[]>;
+    abstract deleteCategory(todoData: DeleteCategoryInput): Category | Promise<Category>;
 
     abstract addTodo(todoData: AddTodoInput): Category | Promise<Category>;
 
-    abstract deleteTodo(todoData: DeleteTodoInput): Nullable<string>[] | Promise<Nullable<string>[]>;
+    abstract updateTodo(todoData: UpdateTodoInput): Category | Promise<Category>;
+
+    abstract deleteTodo(todoData: DeleteTodoInput): Category | Promise<Category>;
 }
 
 export class Category {

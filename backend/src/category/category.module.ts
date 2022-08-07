@@ -8,5 +8,6 @@ import { CategoryService } from './category.service';
 @Module({
   imports: [TypeOrmModule.forFeature([CategoryEntity, TodoEntity])],
   providers: [CategoryResolver, CategoryService],
+  exports: [CategoryService],
 })
 export class CategoryModule {}

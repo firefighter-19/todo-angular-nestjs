@@ -1,10 +1,16 @@
 export interface DeleteTodoDto {
-  todoId: string[];
+  categoryId: string;
+  todoId: string;
 }
 
 export interface addTodoDto {
   categoryId: string;
   text: string;
+}
+
+export interface updateTodoDto {
+  categoryId: string;
+  todo: Todo;
 }
 
 export interface Todo {

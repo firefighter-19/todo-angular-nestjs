@@ -7,7 +7,7 @@ export const graphqlConfig: ApolloDriverConfig = {
   typePaths: ['./**/*.graphql'],
   context: ({ req, res }) => ({ req, res }),
   cors: {
-    origin: ['http://localhost:8080'],
+    origin: ['http://localhost:4200'],
     credentials: true,
   },
   csrfPrevention: true,

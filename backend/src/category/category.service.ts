@@ -24,6 +24,13 @@ export class CategoryService {
     });
   }
 
+  public async getOneCategory(id: string): Promise<CategoryEntity> {
+    return await this.categoryRepository.findOneOrFail({
+      where: { id },
+      relations: ['todo'],
+    });
+  }
+
   public async createCategory(
     data: CreateCategoryDto,
   ): Promise<CategoryEntity> {
@@ -43,34 +50,18 @@ export class CategoryService {
 
   public async updateCategory(
     data: UpdateCategoryDto,
-  ): Promise<CategoryEntity[]> {
-    const { categories } = data;
-    for (const category of categories) {
-      const { todo: todoList } = category;
-      await this.categoryRepository.update(
-        { id: category.id },
-        { title: category.title },
-      );
-      if (todoList && todoList.length) {
-        for (const todo of todoList) {
-          await this.todoRepository.update(
-            {
-              id: todo.id,
-            },
-            {
-              text: todo.text,
-              isCompleted: todo.isCompleted,
-            },
-          );
-        }
-      }
-    }
-    return await this.getTodoList();
+  ): Promise<CategoryEntity> {
+    const { categoryId, title } = data;
+    await this.categoryRepository.update({ id: categoryId }, { title });
+    return await this.getOneCategory(categoryId);
   }
 
-  public async deleteCategory(data: DeleteCategoryDto): Promise<string[]> {
+  public async deleteCategory(
+    data: DeleteCategoryDto,
+  ): Promise<CategoryEntity> {
     const { id } = data;
-    await this.categoryRepository.delete(id);
-    return id;
+    const category = await this.getOneCategory(id);
+    if (category) await this.categoryRepository.delete(id);
+    return category;
   }
 }

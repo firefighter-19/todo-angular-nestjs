@@ -1,6 +1,6 @@
 import { TodoService } from './todo.service';
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
-import { DeleteTodoDto, addTodoDto } from './dto/todo.dto';
+import { DeleteTodoDto, addTodoDto, updateTodoDto } from './dto/todo.dto';
 import { CategoryEntity } from '../category/entity/category.entity';
 
 @Resolver()
@@ -13,10 +13,18 @@ export class TodoResolver {
   ): Promise<CategoryEntity> {
     return await this.todoService.addTodo(todoData);
   }
-  @Mutation(() => [String])
+
+  @Mutation(() => CategoryEntity)
+  async updateTodo(
+    @Args('todoData') todoData: updateTodoDto,
+  ): Promise<CategoryEntity> {
+    return await this.todoService.updateTodo(todoData);
+  }
+
+  @Mutation(() => CategoryEntity)
   async deleteTodo(
     @Args('todoData') todoData: DeleteTodoDto,
-  ): Promise<string[]> {
+  ): Promise<CategoryEntity> {
     return await this.todoService.deleteTodo(todoData);
   }
 }
