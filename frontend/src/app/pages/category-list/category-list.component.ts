@@ -1,17 +1,17 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IProjects } from '../../interfaces';
-import { TodoListService } from './todo-list.service';
+import { CategoryListService } from './category-list.service';
 
 @Component({
-  selector: 'app-todo-list',
-  templateUrl: './todo-list.component.html',
-  styleUrls: ['./todo-list.component.css'],
+  selector: 'app-category-list',
+  templateUrl: './category-list.component.html',
+  styleUrls: ['./category-list.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TodoListComponent implements OnInit {
+export class CategoryListComponent implements OnInit {
   projects$?: Observable<IProjects>;
-  constructor(private readonly todoListService: TodoListService) {}
+  constructor(private readonly todoListService: CategoryListService) {}
 
   ngOnInit(): void {
     this.projects$ = this.todoListService.getTodoList();

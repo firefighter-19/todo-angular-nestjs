@@ -1,0 +1,13 @@
+<div *ngIf="projects$ | async as projects" class="container">
+  <ul class="category__list">
+    <li
+      *ngFor="let category of projects.projects"
+      class="category__list-item"
+    >
+      <p class="category__list-title">
+        {{ category.title }}
+      </p>
+      <app-category [categoryId]="category.id" [todo]="category.todo"></app-category>
+    </li>
+  </ul>
+</div>

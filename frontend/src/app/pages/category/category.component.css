@@ -1,0 +1,33 @@
+.todo__block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.todo__block-list {
+  width: 100%;
+}
+
+.todo__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.todo__item-el {
+  width: 100%;
+  padding: 1rem;
+}
+
+.todo__add-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.todo__item-add {
+  width: 100%;
+  margin: 1rem 0;
+  display: flex;
+  justify-content: center;
+}

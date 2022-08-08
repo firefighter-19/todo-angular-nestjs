@@ -1,0 +1,42 @@
+<div class="todo__block">
+  <ul class="todo__block-list">
+    <li *ngFor="let t of todo" class="todo__item">
+      <app-todo [categoryId]="categoryId" [todo]="t" class="todo__item-el"></app-todo>
+    </li>
+  </ul>
+  <div class="todo__item-add">
+    <button
+      mat-mini-fab
+      color="primary"
+      (click)="openDialog(dialog)"
+      >
+        <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>
+
+<ng-template #dialog>
+  <div class="todo__add-form">
+    <h1 mat-dialog-title>Добавьте новое задание</h1>
+    <mat-form-field mat-dialog-content [formGroup]="addTodoForm" appearance="fill">
+      <mat-label>Напишите здесь</mat-label>
+      <input matInput type="text" formControlName="text">
+      <button
+       *ngIf="addTodoForm.value.text?.length"
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="addTodoForm.reset()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <button
+     *ngIf="addTodoForm.value.text?.length"
+      mat-raised-button
+      color="primary"
+      (click)="addTodo()"
+    >
+      Добавить задание
+    </button>
+  </div>
+</ng-template>

@@ -1,0 +1,22 @@
+.container {
+  margin: 0 auto;
+  max-width: 75rem;
+}
+
+.category__list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.category__list-item {
+  outline: solid 0.063rem #000;
+  box-shadow: 0.075rem 0.075rem #000;
+  margin: 2rem;
+}
+
+.category__list-title {
+  padding: 0.5rem 1rem;
+  border-bottom: solid 0.063rem #000;
+  text-transform: uppercase;
+  font-weight: 500;
+}

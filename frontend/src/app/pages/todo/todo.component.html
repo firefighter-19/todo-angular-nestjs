@@ -1,0 +1,49 @@
+<div class="todo">
+  <div class="todo__title">
+    <mat-checkbox
+      [ngClass]="todo.isCompleted ? 'todo__checkbox-active' : 'todo__checkbox'"
+      (change)="updateTodo(!todo.isCompleted)"
+      [checked]="todo.isCompleted" color="primary"
+      >
+        {{ todo.text }}
+      </mat-checkbox>
+  </div>
+  <div class="todo__buttons">
+    <button
+      mat-mini-fab
+      color="primary"
+      (click)="openDialog(dialogUpdate)"
+      >
+        <mat-icon>update</mat-icon>
+      </button>
+    <button mat-mini-fab color="primary" (click)="deleteTodo({categoryId, todoId: todo.id})"><mat-icon>delete</mat-icon></button>
+  </div>
+
+</div>
+
+<ng-template #dialogUpdate>
+  <div class="todo__add-form">
+    <h1 mat-dialog-title>Изменить задание</h1>
+    <mat-form-field mat-dialog-content [formGroup]="addTodoForm" appearance="fill">
+      <mat-label>Напишите</mat-label>
+      <input matInput type="text" formControlName="text" [(ngModel)]="todo.text">
+      <button
+       *ngIf="addTodoForm.value.text?.length"
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="addTodoForm.reset()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <button
+     *ngIf="addTodoForm.value.text?.length"
+      mat-raised-button
+      color="primary"
+      (click)="updateTodo()"
+    >
+      Изменить задание
+    </button>
+  </div>
+</ng-template>
+
