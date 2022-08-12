@@ -1,13 +1,12 @@
-export interface CreateCategoryDto {
+export interface createCategoryDto {
   title: string;
-  text: string[];
 }
 
-export interface UpdateCategoryDto {
+export interface updateCategoryDto {
   categoryId: string;
   title: string;
 }
 
-export interface DeleteCategoryDto {
+export interface deleteCategoryDto {
   id: string;
 }

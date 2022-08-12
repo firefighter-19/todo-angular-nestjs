@@ -1,3 +1,4 @@
+import { Store } from '@ngrx/store';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IProjects } from '../../interfaces';
@@ -11,9 +12,13 @@ import { CategoryListService } from './category-list.service';
 })
 export class CategoryListComponent implements OnInit {
   projects$?: Observable<IProjects>;
-  constructor(private readonly todoListService: CategoryListService) {}
+  constructor(
+    private readonly todoListService: CategoryListService,
+    private store: Store
+  ) {}
 
   ngOnInit(): void {
-    this.projects$ = this.todoListService.getTodoList();
+    this.todoListService.getTodoList();
+    this.projects$ = this.store
   }
 }
