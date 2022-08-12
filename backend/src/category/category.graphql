@@ -10,7 +10,6 @@ type Mutation {
 
 input CreateCategoryInput {
   title: String!
-  text: [String]
 }
 
 input UpdateCategoryInput {

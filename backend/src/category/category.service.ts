@@ -34,18 +34,8 @@ export class CategoryService {
   public async createCategory(
     data: CreateCategoryDto,
   ): Promise<CategoryEntity> {
-    const { title, text } = data;
-    const category = await this.categoryRepository.save({ title });
-    const todoList = [];
-    for (const todoText of text) {
-      const todo = await this.todoRepository.save({
-        text: todoText,
-        category,
-      });
-      todoList.push(todo);
-    }
-    category.todo = todoList;
-    return category;
+    const { title } = data;
+    return await this.categoryRepository.save({ title });
   }
 
   public async updateCategory(

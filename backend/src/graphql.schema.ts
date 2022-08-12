@@ -10,7 +10,6 @@
 
 export class CreateCategoryInput {
     title: string;
-    text?: Nullable<Nullable<string>[]>;
 }
 
 export class UpdateCategoryInput {
