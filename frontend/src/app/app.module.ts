@@ -11,7 +11,6 @@ import { CategoryListModule } from './pages/category-list/category-list.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialUiModule } from './components/materialui/materialui.module';
 import { StoreModule } from '@ngrx/store';
-import { categoryReducer } from './store/reducers/category.reducer';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,7 +24,6 @@ import { categoryReducer } from './store/reducers/category.reducer';
     CategoryListModule,
     ReactiveFormsModule,
     MaterialUiModule,
-    StoreModule.forRoot({projects: categoryReducer}, {}),
   ],
   providers: [],
   bootstrap: [AppComponent],

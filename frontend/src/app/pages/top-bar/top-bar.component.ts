@@ -1,11 +1,12 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
+  OnDestroy,
   TemplateRef,
 } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
 import { CategoryListService } from '../category-list/category-list.service';
 import { createCategoryDto } from '../category-list/dto/category.dto';
 
@@ -15,16 +16,21 @@ import { createCategoryDto } from '../category-list/dto/category.dto';
   styleUrls: ['./top-bar.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TopBarComponent {
+export class TopBarComponent implements OnDestroy {
   addTodoForm = this.formBuilder.group({
     title: '',
   });
+  protected querySubscription!: Subscription;
 
   constructor(
     private readonly todoListService: CategoryListService,
     private formBuilder: FormBuilder,
     public dialog: MatDialog
   ) {}
+
+  ngOnDestroy(): void {
+    this.querySubscription.unsubscribe();
+  }
 
   public openDialog(templateRef: TemplateRef<any>) {
     this.dialog.open(templateRef, {
@@ -39,7 +45,9 @@ export class TopBarComponent {
     const data: createCategoryDto = {
       title: this.addTodoForm.value.title as string,
     };
-    this.todoListService.createCategory(data);
+    this.querySubscription = this.todoListService
+      .createCategory(data)
+      .subscribe();
     this.addTodoForm.reset();
     this.dialog.closeAll();
   }

@@ -1,8 +1,12 @@
-import { Store } from '@ngrx/store';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { IProjects } from '../../interfaces';
+import { ICategory } from './../../interfaces';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  OnDestroy,
+} from '@angular/core';
 import { CategoryListService } from './category-list.service';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-category-list',
@@ -10,15 +14,18 @@ import { CategoryListService } from './category-list.service';
   styleUrls: ['./category-list.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CategoryListComponent implements OnInit {
-  projects$?: Observable<IProjects>;
-  constructor(
-    private readonly todoListService: CategoryListService,
-    private store: Store
-  ) {}
+export class CategoryListComponent implements OnInit, OnDestroy {
+  projects$!: Observable<ICategory[]>;
+  protected querySubscription!: Subscription;
+
+  constructor(private readonly todoListService: CategoryListService) {}
 
   ngOnInit(): void {
-    this.todoListService.getTodoList();
-    this.projects$ = this.store
+    this.querySubscription = this.todoListService.getTodoList().subscribe();
+    this.projects$ = this.todoListService.projects$;
+  }
+
+  ngOnDestroy(): void {
+    this.querySubscription.unsubscribe();
   }
 }
