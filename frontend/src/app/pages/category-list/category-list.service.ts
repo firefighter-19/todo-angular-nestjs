@@ -1,8 +1,8 @@
 import { DELETE_CATEGORY } from './gql/deleteCategory';
 import { Injectable } from '@angular/core';
 import { Apollo, MutationResult } from 'apollo-angular';
-import { BehaviorSubject, Observable, Subscription } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { shareReplay, tap } from 'rxjs/operators';
 import { ICategory, IProjects } from '../../interfaces';
 import {
   createCategoryDto,
@@ -31,7 +31,8 @@ export class CategoryListService {
       .valueChanges.pipe(
         tap(({ data }) => {
           this.projects.next(data.projects);
-        })
+        }),
+        shareReplay(1)
       );
   }
 
